@@ -8,12 +8,22 @@
 import UIKit
 
 class FirstSectionTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var imageFrameStackView: UIView!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var cameraIconImageView: UIImageView!
     static let identifier = "FirstSectionTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = .blue
-        // Initialization code
+        imageFrameStackView.layer.borderWidth = 1
+        imageFrameStackView.layer.borderColor = UIColor.brown.cgColor
+        imageFrameStackView.layer.cornerRadius = 42
+        contentView.sendSubviewToBack(imageFrameStackView)
+        cameraIconImageView.layer.borderWidth = 0.5
+        cameraIconImageView.layer.borderColor = UIColor.lightGray.cgColor
+        cameraIconImageView.layer.cornerRadius = 14
+        profileImageView.layer.cornerRadius = 41
     }
     
 }

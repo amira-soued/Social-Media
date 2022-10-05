@@ -21,21 +21,13 @@ class ViewController: UIViewController {
         tableView.register(UINib(nibName: "SecondSectionTableViewCell", bundle: nil), forCellReuseIdentifier: SecondSectionTableViewCell.identifier)
     }
 
-
 }
 extension ViewController : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var sectionNumber = 0
-        if section == 0 {
-            sectionNumber = 1
-        }
-        if section == 1 {
-            sectionNumber = 7
-        }
-        return sectionNumber
+        section == 0 ? 1 : 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,7 +48,6 @@ extension ViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         indexPath.section == 0 ? 120 : 80
     }
-    
     
 }
 extension ViewController : UITableViewDelegate{
