@@ -16,7 +16,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
         tableView.sectionHeaderTopPadding = 0
+        tableView.separatorColor = .clear
         tableView.register(UINib(nibName: "FirstSectionTableViewCell", bundle: nil), forCellReuseIdentifier: FirstSectionTableViewCell.identifier)
         tableView.register(UINib(nibName: "SecondSectionTableViewCell", bundle: nil), forCellReuseIdentifier: SecondSectionTableViewCell.identifier)
     }
@@ -38,6 +40,7 @@ extension ViewController : UITableViewDataSource {
         if indexPath.section == 1 {
             cell = tableView.dequeueReusableCell(withIdentifier: SecondSectionTableViewCell.identifier, for: indexPath)
         }
+      //  cell.isUserInteractionEnabled = false
         return cell
     }
     

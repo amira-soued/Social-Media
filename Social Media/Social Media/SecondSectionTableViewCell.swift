@@ -8,11 +8,16 @@
 import UIKit
 
 class SecondSectionTableViewCell: UITableViewCell {
+        
+    @IBOutlet weak var cellBorderStackView: UIStackView!
+    
     static let identifier = "SecondSectionTableViewCell"
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = .purple
-        // Initialization code
+        cellBorderStackView.layer.borderWidth = 1
+        cellBorderStackView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        cellBorderStackView.layer.cornerRadius = 15
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
