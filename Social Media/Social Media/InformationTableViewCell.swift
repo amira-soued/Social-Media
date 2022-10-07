@@ -1,17 +1,17 @@
 //
-//  SecondSectionTableViewCell.swift
+//  informationTableViewCell.swift
 //  Social Media
 //
-//  Created by Mac on 4/10/2022.
+//  Created by Mac on 6/10/2022.
 //
 
 import UIKit
 
-class SecondSectionTableViewCell: UITableViewCell {
+class InformationTableViewCell: UITableViewCell {
         
     @IBOutlet weak var cellBorderStackView: UIStackView!
     
-    static let identifier = "SecondSectionTableViewCell"
+    static let identifier = "InformationTableViewCell"
     override func awakeFromNib() {
         super.awakeFromNib()
         cellBorderStackView.layer.borderWidth = 1

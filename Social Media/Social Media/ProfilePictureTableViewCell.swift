@@ -7,12 +7,12 @@
 
 import UIKit
 
-class FirstSectionTableViewCell: UITableViewCell {
+class ProfilePictureTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imageFrameStackView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var cameraIconImageView: UIImageView!
-    static let identifier = "FirstSectionTableViewCell"
+    static let identifier = "ProfilePictureTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
