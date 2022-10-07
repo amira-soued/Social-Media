@@ -61,6 +61,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cellBorderStackView" destination="eC6-K3-bBC" id="gVC-bL-f8K"/>
+                <outlet property="cellTitleLabel" destination="66A-zH-Qe6" id="HID-EJ-60L"/>
+                <outlet property="informationCellTextField" destination="DU1-pO-aUo" id="GwI-p0-BVK"/>
             </connections>
             <point key="canvasLocation" x="164.49275362318841" y="52.566964285714285"/>
         </tableViewCell>
