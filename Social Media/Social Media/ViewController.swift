@@ -12,8 +12,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let cellTitlesArray = ["","First name","Last name","Location","Phone","Mail","Studies","Profession"]
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
@@ -22,8 +22,8 @@ class ViewController: UIViewController {
         tableView.register(UINib(nibName: "ProfilePictureTableViewCell", bundle: nil), forCellReuseIdentifier: ProfilePictureTableViewCell.identifier)
         tableView.register(UINib(nibName: "InformationTableViewCell", bundle: nil), forCellReuseIdentifier: InformationTableViewCell.identifier)
     }
-
 }
+
 extension ViewController : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         1

@@ -21,27 +21,23 @@
                         <rect key="frame" x="20" y="8" width="317" height="123"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="m8d-TI-VxM">
-                                <rect key="frame" x="0.0" y="0.0" width="267" height="123"/>
+                                <rect key="frame" x="10" y="71" width="257" height="52"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66A-zH-Qe6">
-                                        <rect key="frame" x="225.5" y="5" width="41.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="257" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DU1-pO-aUo">
-                                        <rect key="frame" x="225.5" y="25.5" width="41.5" height="97.5"/>
+                                        <rect key="frame" x="0.0" y="18" width="257" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="66A-zH-Qe6" firstAttribute="top" secondItem="m8d-TI-VxM" secondAttribute="top" constant="5" id="VCr-qu-dic"/>
-                                    <constraint firstItem="66A-zH-Qe6" firstAttribute="leading" secondItem="m8d-TI-VxM" secondAttribute="leading" constant="15" id="peR-GM-zHH"/>
-                                </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rnp-mh-gXy">
-                                <rect key="frame" x="267" y="3.5" width="50" height="116.5"/>
+                                <rect key="frame" x="267" y="74.5" width="50" height="45.5"/>
                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="n5U-bg-Fyr"/>
@@ -49,6 +45,10 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" scale="small"/>
                             </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="m8d-TI-VxM" firstAttribute="leading" secondItem="eC6-K3-bBC" secondAttribute="leading" constant="10" id="WPN-3A-JTa"/>
+                            <constraint firstItem="m8d-TI-VxM" firstAttribute="top" secondItem="eC6-K3-bBC" secondAttribute="top" constant="5" id="hQe-Ya-Sdl"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>

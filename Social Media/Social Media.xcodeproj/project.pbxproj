@@ -17,6 +17,7 @@
 		040945CD28EC491100D872BE /* ProfilePictureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040945CB28EC491100D872BE /* ProfilePictureTableViewCell.xib */; };
 		040945D428EF369F00D872BE /* InformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040945D228EF369F00D872BE /* InformationTableViewCell.swift */; };
 		040945D528EF369F00D872BE /* InformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040945D328EF369F00D872BE /* InformationTableViewCell.xib */; };
+		040945D728F8200500D872BE /* UserInformation Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040945D628F8200500D872BE /* UserInformation Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		040945CB28EC491100D872BE /* ProfilePictureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePictureTableViewCell.xib; sourceTree = "<group>"; };
 		040945D228EF369F00D872BE /* InformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewCell.swift; sourceTree = "<group>"; };
 		040945D328EF369F00D872BE /* InformationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InformationTableViewCell.xib; sourceTree = "<group>"; };
+		040945D628F8200500D872BE /* UserInformation Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserInformation Model.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				040945B628EC41D500D872BE /* AppDelegate.swift */,
 				040945B828EC41D500D872BE /* SceneDelegate.swift */,
 				040945BA28EC41D500D872BE /* ViewController.swift */,
+				040945D628F8200500D872BE /* UserInformation Model.swift */,
 				040945CA28EC491100D872BE /* ProfilePictureTableViewCell.swift */,
 				040945D228EF369F00D872BE /* InformationTableViewCell.swift */,
 				040945D328EF369F00D872BE /* InformationTableViewCell.xib */,
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040945D728F8200500D872BE /* UserInformation Model.swift in Sources */,
 				040945BB28EC41D500D872BE /* ViewController.swift in Sources */,
 				040945B728EC41D500D872BE /* AppDelegate.swift in Sources */,
 				040945CC28EC491100D872BE /* ProfilePictureTableViewCell.swift in Sources */,

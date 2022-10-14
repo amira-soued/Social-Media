@@ -12,7 +12,7 @@ class InformationTableViewCell: UITableViewCell {
     @IBOutlet weak var cellBorderStackView: UIStackView!
     @IBOutlet weak var cellTitleLabel: UILabel!
     @IBOutlet weak var informationCellTextField: UITextField!
-   public var cellTitleText = String()
+    public var cellTitleText = String()
     static let identifier = "InformationTableViewCell"
     
     override func awakeFromNib() {
@@ -26,5 +26,4 @@ class InformationTableViewCell: UITableViewCell {
     func setUpInformationCell(labelName : String){
         cellTitleLabel.text = labelName
     }
-
 }
