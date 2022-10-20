@@ -16,6 +16,7 @@ class ProfilePictureTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    
         imageFrameStackView.layer.borderWidth = 1
         imageFrameStackView.layer.borderColor = UIColor.brown.cgColor
         imageFrameStackView.layer.cornerRadius = 42

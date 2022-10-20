@@ -11,8 +11,9 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let cellTitlesArray = ["","First name","Last name","Location","Phone","Mail","Studies","Profession"]
-    
+   public let cellTitlesArray = ["","First name","Last name","Location","Phone","Mail","Studies","Profession"]
+    var userInfo : UserInformation?
+    var selectionNumber = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -36,14 +37,15 @@ extension ViewController : UITableViewDataSource {
         //var cell = UITableViewCell()
         if indexPath.row == 0 {
            let cell = tableView.dequeueReusableCell(withIdentifier: ProfilePictureTableViewCell.identifier, for: indexPath) as! ProfilePictureTableViewCell
+            cell.isUserInteractionEnabled = false
             return cell
         }
         else {
            let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
             cell.setUpInformationCell(labelName: cellTitlesArray[indexPath.row])
+            cell.displayUserInformation()
             return cell
         }
-      //  cell.isUserInteractionEnabled = false
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

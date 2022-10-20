@@ -7,12 +7,19 @@
 
 import Foundation
 
-struct UserInformation: Codable {
+struct UserInformation : Codable {
     var firstName : String
     var lastName : String
     var location : String
     var phone : Int
     var profession : String
     var studies : String
-    
+    init (firstName : String, lastName : String, location : String, phone : Int, profession : String, studies : String){
+        self.firstName = firstName
+        self.lastName = lastName
+        self.location = location
+        self.phone = phone
+        self.profession = profession
+        self.studies = studies
+    }
 }
