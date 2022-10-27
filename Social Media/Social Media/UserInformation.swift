@@ -14,12 +14,15 @@ struct UserInformation : Codable {
     var phone : Int
     var profession : String
     var studies : String
-    init (firstName : String, lastName : String, location : String, phone : Int, profession : String, studies : String){
+    var mail : String
+
+    init (firstName : String, lastName : String, location : String, phone : Int, profession : String, studies : String, mail : String){
         self.firstName = firstName
         self.lastName = lastName
         self.location = location
         self.phone = phone
         self.profession = profession
         self.studies = studies
+        self.mail = mail
     }
 }

@@ -7,51 +7,134 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+struct InformationCellConfiguration {
+    let title: String
+    var keyboardType: UIKeyboardType = .default
+}
 
+enum CellType {
+    case header
+    case firstName(InformationCellConfiguration)
+    case lastName(InformationCellConfiguration)
+    case location(InformationCellConfiguration)
+    case phone(InformationCellConfiguration)
+    case mail(InformationCellConfiguration)
+    case studies(InformationCellConfiguration)
+    case profession(InformationCellConfiguration)
+}
+
+class ViewController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     
-   public let cellTitlesArray = ["","First name","Last name","Location","Phone","Mail","Studies","Profession"]
+    public let cells: [CellType] = [
+        .header,
+        .firstName(InformationCellConfiguration(title: "First name")),
+        .lastName(InformationCellConfiguration(title: "Last name")),
+        .mail(InformationCellConfiguration(title: "Mail", keyboardType: .emailAddress )),
+        .profession(InformationCellConfiguration(title: "Profession")),
+        .phone(InformationCellConfiguration(title: "Phone", keyboardType: .phonePad)),
+        .location(InformationCellConfiguration(title: "Location")),
+        .studies(InformationCellConfiguration(title: "Studies"))
+    ]
+    
     var userInfo : UserInformation?
     var selectionNumber = 0
+    var userInformation: UserInformation?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
         tableView.dataSource = self
         tableView.sectionHeaderTopPadding = 0
         tableView.separatorColor = .clear
         tableView.register(UINib(nibName: "ProfilePictureTableViewCell", bundle: nil), forCellReuseIdentifier: ProfilePictureTableViewCell.identifier)
         tableView.register(UINib(nibName: "InformationTableViewCell", bundle: nil), forCellReuseIdentifier: InformationTableViewCell.identifier)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 300, right: 0)
+        tableView.keyboardDismissMode = .interactive
+        
+        let userDefault = UserDefaults.standard
+        userInformation = UserInformation(
+            firstName: userDefault.string(forKey: "first name") ?? "",
+            lastName: userDefault.string(forKey: "last name") ?? "",
+            location: userDefault.string(forKey: "location") ?? "",
+            phone: userDefault.integer(forKey: "phone") ,
+            profession: userDefault.string(forKey: "profession") ?? "",
+            studies: userDefault.string(forKey: "studies") ?? "",
+            mail: userDefault.string(forKey: "mail") ?? ""
+        )
     }
 }
 
 extension ViewController : UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return cells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //var cell = UITableViewCell()
-        if indexPath.row == 0 {
-           let cell = tableView.dequeueReusableCell(withIdentifier: ProfilePictureTableViewCell.identifier, for: indexPath) as! ProfilePictureTableViewCell
-            cell.isUserInteractionEnabled = false
+        let cellType = cells[indexPath.row]
+        switch cellType {
+        case .header:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ProfilePictureTableViewCell.identifier, for: indexPath) as! ProfilePictureTableViewCell
             return cell
-        }
-        else {
-           let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
-            cell.setUpInformationCell(labelName: cellTitlesArray[indexPath.row])
-            cell.displayUserInformation()
+        case .firstName(let configuration):
+            let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.setUpInformationCell(
+                labelName: configuration.title,
+                value: userInformation?.firstName ?? ""
+            )
+            cell.informationCellTextField.keyboardType = configuration.keyboardType
+            return cell
+
+        case .lastName(let configuration) :
+            let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.setUpInformationCell(
+                labelName: configuration.title,
+                value: userInformation?.lastName ?? ""
+            )
+            return cell
+
+        case .location(let configuration) :
+            let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.setUpInformationCell(
+                labelName: configuration.title,
+                value: userInformation?.location ?? ""
+            )
+            return cell
+
+        case .phone(let configuration) :
+            let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.setUpInformationCell(
+                labelName: configuration.title,
+                value: String(userInformation?.phone ?? 0)
+            )
+            cell.informationCellTextField.keyboardType = configuration.keyboardType
+            return cell
+
+        case .mail(let configuration)  :
+            let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.setUpInformationCell(
+                labelName: configuration.title,
+                value: userInformation?.mail ?? ""
+            )
+            cell.informationCellTextField.keyboardType = configuration.keyboardType
+            return cell
+
+        case .studies(let configuration)  :
+            let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.setUpInformationCell(
+                labelName: configuration.title,
+                value: userInformation?.studies ?? ""
+            )
+            return cell
+
+        case .profession(let configuration)  :
+            let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.setUpInformationCell(
+                labelName: configuration.title,
+                value: userInformation?.profession ?? ""
+            )
             return cell
         }
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        indexPath.row == 0 ? 160 : 80
-    }
-}
-extension ViewController : UITableViewDelegate{
-    
 }

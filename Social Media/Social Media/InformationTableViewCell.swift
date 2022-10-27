@@ -9,75 +9,46 @@ import UIKit
 
 class InformationTableViewCell: UITableViewCell {
         
-    @IBOutlet weak var cellBorderStackView: UIStackView!
+    @IBOutlet weak var borderStackView: UIStackView!
     @IBOutlet weak var cellTitleLabel: UILabel!
     @IBOutlet weak var informationCellTextField: UITextField!
+    @IBOutlet weak var textCheckImageView: UIImageView!
     
-    public var entryText = String()
     static let identifier = "InformationTableViewCell"
-    var firstName , lastName,location,mail, profession, studies : String?
-    var phoneNumber : Int?
-    var userInfo : UserInformation?
-    let defaults = UserDefaults.standard
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        cellBorderStackView.layer.borderWidth = 1
-        cellBorderStackView.layer.borderColor = UIColor.lightGray.cgColor
-        cellBorderStackView.layer.cornerRadius = 15
+        
+        selectionStyle = .none
+        borderStackView.layer.borderWidth = 1
+        borderStackView.layer.borderColor = UIColor.lightGray.cgColor
+        borderStackView.layer.cornerRadius = 15
     }
     
-    func setUpInformationCell(labelName : String){
+    func setUpInformationCell(labelName : String, value: String){
         cellTitleLabel.text = labelName
+        informationCellTextField.text = value
+        isValidUsername(informationCellTextField.text ?? "")
     }
     
     @IBAction func txtFieldTyping(_ sender: Any) {
-        entryText = informationCellTextField.text ?? ""
-        switch cellTitleLabel.text{
-        case "First name":
-            firstName = entryText
-            defaults.set(firstName, forKey: "first name")
-        case "Last name":
-            lastName = entryText
-            defaults.set(lastName, forKey: "last name")
-        case "Location":
-            location = entryText
-            defaults.set(location, forKey: "location")
-        case "Phone":
-            phoneNumber = Int(entryText)
-            defaults.set(phoneNumber, forKey: "phone")
-        case "Mail":
-            mail = entryText
-            defaults.set(mail, forKey: "mail")
-        case "Profession":
-            profession = entryText
-            defaults.set(profession, forKey: "profession")
-        case "Studies":
-            studies = entryText
-            defaults.set(studies, forKey: "studies")
-        default:
+        let entryText = informationCellTextField.text ?? ""
+        guard entryText.isEmpty != true else { textCheckImageView.isHidden = true
             return
         }
+        textCheckImageView.isHidden = false
+        isValidUsername(informationCellTextField.text ?? "")
     }
-    
-    func displayUserInformation(){
-        switch cellTitleLabel.text{
-        case "First name":
-            informationCellTextField.text =  defaults.string(forKey: "first name")
-        case "Last name":
-            informationCellTextField.text = defaults.string(forKey: "last name")
-        case "Location":
-            informationCellTextField.text = defaults.string(forKey: "location")
-        case "Mail":
-            informationCellTextField.text = defaults.string(forKey: "mail")
-        case "Phone":
-            informationCellTextField.text = defaults.string(forKey: "phone")
-        case "Profession":
-            informationCellTextField.text = defaults.string(forKey: "profession")
-        case "Studies":
-            informationCellTextField.text = defaults.string(forKey: "studies")
-        default:
-            return
-        }
+        
+    @discardableResult
+    func isValidUsername(_ name: String , forbiddenChars: String = "@#$%&*(){}[]`£^<>!?;:/.=-+°§'") -> Bool {
+        guard  name.first!.isLetter else { return false }
+        let isValid = name.allSatisfy{ !forbiddenChars.contains($0) }
+        
+        textCheckImageView.image = .init(systemName: isValid ? "checkmark" : "multiply")
+        textCheckImageView.image = textCheckImageView.image?.withRenderingMode(.alwaysTemplate)
+        textCheckImageView.tintColor = isValid ? UIColor.green : .red
+        
+        return isValid
     }
 }
