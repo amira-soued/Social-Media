@@ -18,7 +18,7 @@ class InformationTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        // make cell non selectable
         selectionStyle = .none
         borderStackView.layer.borderWidth = 1
         borderStackView.layer.borderColor = UIColor.lightGray.cgColor
@@ -28,27 +28,43 @@ class InformationTableViewCell: UITableViewCell {
     func setUpInformationCell(labelName : String, value: String){
         cellTitleLabel.text = labelName
         informationCellTextField.text = value
+        let entryText = informationCellTextField.text ?? ""
+        if entryText.isEmpty {
+            textCheckImageView.isHidden = true
+        }
         isValidUsername(informationCellTextField.text ?? "")
     }
     
     @IBAction func txtFieldTyping(_ sender: Any) {
         let entryText = informationCellTextField.text ?? ""
-        guard entryText.isEmpty != true else { textCheckImageView.isHidden = true
-            return
+        if !entryText.isEmpty {
+            textCheckImageView.isHidden = false
+        } else {
+            textCheckImageView.isHidden = true
         }
-        textCheckImageView.isHidden = false
-        isValidUsername(informationCellTextField.text ?? "")
+        isValidUserData(informationCellTextField.text ?? "")
+        if cellTitleLabel.text == "Mail" {
+            isValidEmail(informationCellTextField.text ?? "")
+        }
     }
         
     @discardableResult
-    func isValidUsername(_ name: String , forbiddenChars: String = "@#$%&*(){}[]`£^<>!?;:/.=-+°§'") -> Bool {
-        guard  name.first!.isLetter else { return false }
+    func isValidUserData(_ name: String , forbiddenChars: String = "„¿•±¡@#€¥$‰&%*(){}[]`£^<>!?;:/.=-+°§'’±”") -> Bool {
         let isValid = name.allSatisfy{ !forbiddenChars.contains($0) }
-        
         textCheckImageView.image = .init(systemName: isValid ? "checkmark" : "multiply")
         textCheckImageView.image = textCheckImageView.image?.withRenderingMode(.alwaysTemplate)
         textCheckImageView.tintColor = isValid ? UIColor.green : .red
-        
+        return isValid
+    }
+    
+    @discardableResult
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let isValid = emailPred.evaluate(with: email)
+        textCheckImageView.image = .init(systemName: isValid ? "checkmark" : "multiply")
+        textCheckImageView.image = textCheckImageView.image?.withRenderingMode(.alwaysTemplate)
+        textCheckImageView.tintColor = isValid ? UIColor.green : .red
         return isValid
     }
 }
