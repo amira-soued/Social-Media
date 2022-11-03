@@ -57,7 +57,7 @@ class ViewController: UIViewController {
             firstName: userDefault.string(forKey: "first name") ?? "",
             lastName: userDefault.string(forKey: "last name") ?? "",
             location: userDefault.string(forKey: "location") ?? "",
-            phone: userDefault.integer(forKey: "phone") ,
+            phone: userDefault.string(forKey: "phone") ?? "" ,
             profession: userDefault.string(forKey: "profession") ?? "",
             studies: userDefault.string(forKey: "studies") ?? "",
             mail: userDefault.string(forKey: "mail") ?? ""
@@ -106,7 +106,7 @@ extension ViewController : UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
             cell.setUpInformationCell(
                 labelName: configuration.title,
-                value: String(userInformation?.phone ?? 0)
+                value: userInformation?.phone ?? ""
             )
             cell.informationCellTextField.keyboardType = configuration.keyboardType
             return cell
