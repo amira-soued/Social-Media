@@ -35,6 +35,12 @@ class InformationTableViewCell: UITableViewCell {
         isValidUserData(informationCellTextField.text ?? "")
     }
     
+    func saveInformation(input : String){
+        let key = cellTitleLabel.text ?? ""
+        let defaults = UserDefaults.standard
+        defaults.set(input, forKey: key)
+    }
+    
     @IBAction func txtFieldTyping(_ sender: Any) {
         let entryText = informationCellTextField.text ?? ""
         if !entryText.isEmpty {
@@ -42,6 +48,7 @@ class InformationTableViewCell: UITableViewCell {
         } else {
             textCheckImageView.isHidden = true
         }
+        saveInformation(input: entryText)
         isValidUserData(informationCellTextField.text ?? "")
         if cellTitleLabel.text == "Mail" {
             isValidEmail(informationCellTextField.text ?? "")
@@ -73,8 +80,8 @@ class InformationTableViewCell: UITableViewCell {
     
     @discardableResult
     func ValidPhoneNumber(_ value: String) -> Bool {
-        let PHONE_REGEX = "^[0-9+#*]{6,14}$"
-        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        let phoneRegEx = "[0-9+#*]{6,14}"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegEx)
         let isValid = phoneTest.evaluate(with: value)
         textCheckImageView.image = .init(systemName: isValid ? "checkmark" : "multiply")
         textCheckImageView.image = textCheckImageView.image?.withRenderingMode(.alwaysTemplate)

@@ -13,7 +13,7 @@ class ProfilePictureTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var cameraIconImageView: UIImageView!
     static let identifier = "ProfilePictureTableViewCell"
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
@@ -25,6 +25,8 @@ class ProfilePictureTableViewCell: UITableViewCell {
         cameraIconImageView.layer.borderColor = UIColor.lightGray.cgColor
         cameraIconImageView.layer.cornerRadius = 14
         profileImageView.layer.cornerRadius = 41
+        
     }
     
 }
+

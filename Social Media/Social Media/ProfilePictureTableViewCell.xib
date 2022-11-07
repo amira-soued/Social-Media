@@ -13,19 +13,19 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="165" id="KGk-i7-Jjw" customClass="ProfilePictureTableViewCell" customModule="Social_Media" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="370" height="165"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="370" height="165"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPd-eU-ZDq">
-                        <rect key="frame" x="142" y="39.5" width="86" height="86"/>
+                        <rect key="frame" x="142" y="18" width="86" height="86"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="fPd-eU-ZDq" secondAttribute="height" multiplier="1:1" id="c7Q-du-Lyv"/>
                             <constraint firstAttribute="width" constant="86" id="wGr-z9-aSO"/>
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8TR-eE-HBS">
-                        <rect key="frame" x="144" y="41.5" width="82" height="82"/>
+                        <rect key="frame" x="144" y="20" width="82" height="82"/>
                         <color key="backgroundColor" systemColor="linkColor"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="8TR-eE-HBS" secondAttribute="height" multiplier="1:1" id="bxE-w0-cv4"/>
@@ -33,7 +33,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZaI-AP-nHV">
-                        <rect key="frame" x="201" y="103.5" width="27" height="25.5"/>
+                        <rect key="frame" x="201" y="82" width="27" height="25.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="labelColor"/>
                         <constraints>
@@ -43,7 +43,7 @@
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" scale="small" weight="regular"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUBLIC INFORMATION" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u56-d2-oId">
-                        <rect key="frame" x="19" y="145" width="160.5" height="18"/>
+                        <rect key="frame" x="19" y="147" width="160.5" height="18"/>
                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <color key="textColor" red="0.41563797000000002" green="0.41571408510000002" blue="0.41563314200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -56,13 +56,13 @@
                     <constraint firstItem="ZaI-AP-nHV" firstAttribute="leading" secondItem="8TR-eE-HBS" secondAttribute="trailing" constant="-25" id="REo-jB-3Ov"/>
                     <constraint firstItem="fPd-eU-ZDq" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="aZp-kR-Vw3"/>
                     <constraint firstItem="fPd-eU-ZDq" firstAttribute="top" secondItem="8TR-eE-HBS" secondAttribute="bottom" constant="-84" id="nKB-2b-YNR"/>
-                    <constraint firstItem="8TR-eE-HBS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="41.5" id="oEg-CZ-mVq"/>
+                    <constraint firstItem="8TR-eE-HBS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="oEg-CZ-mVq"/>
                     <constraint firstItem="fPd-eU-ZDq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tAD-Yh-EO1"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <constraints>
-                <constraint firstItem="njF-e1-oar" firstAttribute="bottom" secondItem="u56-d2-oId" secondAttribute="bottom" constant="2" id="3t2-Cq-cDa"/>
+                <constraint firstItem="njF-e1-oar" firstAttribute="bottom" secondItem="u56-d2-oId" secondAttribute="bottom" id="3t2-Cq-cDa"/>
                 <constraint firstItem="u56-d2-oId" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" constant="19" id="9Tn-Ud-2Yj"/>
             </constraints>
             <connections>

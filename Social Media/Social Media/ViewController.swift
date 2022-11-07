@@ -38,7 +38,6 @@ class ViewController: UIViewController {
         .studies(InformationCellConfiguration(title: "Studies"))
     ]
     
-    var userInfo : UserInformation?
     var selectionNumber = 0
     var userInformation: UserInformation?
     
@@ -54,13 +53,13 @@ class ViewController: UIViewController {
         
         let userDefault = UserDefaults.standard
         userInformation = UserInformation(
-            firstName: userDefault.string(forKey: "first name") ?? "",
-            lastName: userDefault.string(forKey: "last name") ?? "",
-            location: userDefault.string(forKey: "location") ?? "",
-            phone: userDefault.string(forKey: "phone") ?? "" ,
-            profession: userDefault.string(forKey: "profession") ?? "",
-            studies: userDefault.string(forKey: "studies") ?? "",
-            mail: userDefault.string(forKey: "mail") ?? ""
+            firstName: userDefault.string(forKey: "First name") ?? "",
+            lastName: userDefault.string(forKey: "Last name") ?? "",
+            location: userDefault.string(forKey: "Location") ?? "",
+            phone: userDefault.string(forKey: "Phone") ?? "" ,
+            profession: userDefault.string(forKey: "Profession") ?? "",
+            studies: userDefault.string(forKey: "Studies") ?? "",
+            mail: userDefault.string(forKey: "Mail") ?? ""
         )
     }
 }
