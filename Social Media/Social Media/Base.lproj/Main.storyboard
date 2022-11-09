@@ -32,6 +32,9 @@
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" systemColor="systemBackgroundColor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k6t-vb-7iu"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -46,6 +49,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="saveButton" destination="3zg-62-i6A" id="79a-qt-PFU"/>
                         <outlet property="tableView" destination="lqk-OC-fHo" id="EVR-8l-ojE"/>
                     </connections>
                 </viewController>

@@ -26,7 +26,8 @@ enum CellType {
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var saveButton: UIButton!
+
     public let cells: [CellType] = [
         .header,
         .firstName(InformationCellConfiguration(title: "First name")),
@@ -62,6 +63,10 @@ class ViewController: UIViewController {
             mail: userDefault.string(forKey: "Mail") ?? ""
         )
     }
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        // Save userInformation
+    }
 }
 
 extension ViewController : UITableViewDataSource {
@@ -78,62 +83,106 @@ extension ViewController : UITableViewDataSource {
             return cell
         case .firstName(let configuration):
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.delegate = self
             cell.setUpInformationCell(
                 labelName: configuration.title,
-                value: userInformation?.firstName ?? ""
+                value: userInformation?.firstName ?? "",
+                type: cellType
             )
             cell.informationCellTextField.keyboardType = configuration.keyboardType
             return cell
 
         case .lastName(let configuration) :
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.delegate = self
             cell.setUpInformationCell(
                 labelName: configuration.title,
-                value: userInformation?.lastName ?? ""
+                value: userInformation?.lastName ?? "",
+                type: cellType
             )
             return cell
 
         case .location(let configuration) :
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.delegate = self
             cell.setUpInformationCell(
                 labelName: configuration.title,
-                value: userInformation?.location ?? ""
+                value: userInformation?.location ?? "",
+                type: cellType
             )
             return cell
 
         case .phone(let configuration) :
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.delegate = self
             cell.setUpInformationCell(
                 labelName: configuration.title,
-                value: userInformation?.phone ?? ""
+                value: userInformation?.phone ?? "",
+                type: cellType
             )
             cell.informationCellTextField.keyboardType = configuration.keyboardType
             return cell
 
         case .mail(let configuration)  :
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.delegate = self
             cell.setUpInformationCell(
                 labelName: configuration.title,
-                value: userInformation?.mail ?? ""
+                value: userInformation?.mail ?? "",
+                type: cellType
             )
             cell.informationCellTextField.keyboardType = configuration.keyboardType
             return cell
 
         case .studies(let configuration)  :
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.delegate = self
             cell.setUpInformationCell(
                 labelName: configuration.title,
-                value: userInformation?.studies ?? ""
+                value: userInformation?.studies ?? "",
+                type: cellType
             )
             return cell
 
         case .profession(let configuration)  :
             let cell = tableView.dequeueReusableCell(withIdentifier: InformationTableViewCell.identifier, for: indexPath) as! InformationTableViewCell
+            cell.delegate = self
             cell.setUpInformationCell(
                 labelName: configuration.title,
-                value: userInformation?.profession ?? ""
+                value: userInformation?.profession ?? "",
+                type: cellType
             )
             return cell
+        }
+    }
+}
+
+extension ViewController: InformationCellDelegate {
+    
+    func informationDidChange(value: String, type: CellType) {
+        switch type {
+        case .header:
+            break
+        case .firstName:
+            userInformation?.firstName = value
+            
+        case .lastName:
+            userInformation?.lastName = value
+
+        case .location:
+            userInformation?.location = value
+
+        case .phone:
+            userInformation?.phone = value
+
+        case .mail:
+            userInformation?.mail = value
+
+        case .studies:
+            userInformation?.studies = value
+
+        case .profession:
+            userInformation?.profession = value
         }
     }
 }

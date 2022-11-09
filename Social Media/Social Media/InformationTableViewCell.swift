@@ -6,6 +6,10 @@
 //
 
 import UIKit
+//informationCellDelegate allows the ViewController to define the func informationDidChange
+protocol InformationCellDelegate: AnyObject {
+    func informationDidChange(value: String, type: CellType)
+}
 
 class InformationTableViewCell: UITableViewCell {
         
@@ -16,6 +20,9 @@ class InformationTableViewCell: UITableViewCell {
     
     static let identifier = "InformationTableViewCell"
 
+    weak var delegate: InformationCellDelegate?
+    var cellType: CellType?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // make cell non selectable
@@ -25,37 +32,42 @@ class InformationTableViewCell: UITableViewCell {
         borderStackView.layer.cornerRadius = 15
     }
     
-    func setUpInformationCell(labelName : String, value: String){
+    func setUpInformationCell(labelName : String, value: String, type: CellType){
+        self.cellType = type
         cellTitleLabel.text = labelName
         informationCellTextField.text = value
-        let entryText = informationCellTextField.text ?? ""
-        if entryText.isEmpty {
+        let inputText = informationCellTextField.text ?? ""
+        if inputText.isEmpty {
             textCheckImageView.isHidden = true
         }
-        isValidUserData(informationCellTextField.text ?? "")
-    }
-    
-    func saveInformation(input : String){
-        let key = cellTitleLabel.text ?? ""
-        let defaults = UserDefaults.standard
-        defaults.set(input, forKey: key)
+        //check if the saved user info are valid
+        switch cellType {
+        case .phone(_):
+            ValidPhoneNumber(informationCellTextField.text ?? "")
+        case .mail(_):
+            isValidEmail(informationCellTextField.text ?? "")
+        default:
+            isValidUserData(informationCellTextField.text ?? "")
+        }
     }
     
     @IBAction func txtFieldTyping(_ sender: Any) {
-        let entryText = informationCellTextField.text ?? ""
-        if !entryText.isEmpty {
+        let inputText = informationCellTextField.text ?? ""
+        if !inputText.isEmpty {
             textCheckImageView.isHidden = false
         } else {
             textCheckImageView.isHidden = true
         }
-        saveInformation(input: entryText)
-        isValidUserData(informationCellTextField.text ?? "")
-        if cellTitleLabel.text == "Mail" {
-            isValidEmail(informationCellTextField.text ?? "")
-        }
-        if cellTitleLabel.text == "Phone" {
+        guard let cellType = cellType else { return }
+        switch cellType {
+        case .phone(_):
             ValidPhoneNumber(informationCellTextField.text ?? "")
+        case .mail(_):
+            isValidEmail(informationCellTextField.text ?? "")
+        default:
+            isValidUserData(informationCellTextField.text ?? "")
         }
+        delegate?.informationDidChange(value: inputText, type: cellType)
     }
         
     @discardableResult
@@ -89,3 +101,9 @@ class InformationTableViewCell: UITableViewCell {
         return isValid
     }
 }
+
+// Design Pattern :
+// - objet child want to send an information to a class parent, he need to use Delegation
+// - Strategy Design pattern: When you want to change implementation on excution time
+// - Factory Design pattern
+// - Dependency injection
