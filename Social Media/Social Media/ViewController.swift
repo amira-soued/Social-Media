@@ -66,6 +66,14 @@ class ViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         // Save userInformation
+        let userDefault = UserDefaults.standard
+        userDefault.set(userInformation?.firstName, forKey: "First name")
+        userDefault.set(userInformation?.lastName, forKey: "Last name")
+        userDefault.set(userInformation?.location, forKey: "Location")
+        userDefault.set(userInformation?.phone, forKey: "Phone")
+        userDefault.set(userInformation?.profession, forKey: "Profession")
+        userDefault.set(userInformation?.studies, forKey: "Studies")
+        userDefault.set(userInformation?.mail, forKey: "Mail")
     }
 }
 
@@ -158,7 +166,7 @@ extension ViewController : UITableViewDataSource {
 }
 
 extension ViewController: InformationCellDelegate {
-    
+// store the text typed by the user inside the userInformation according to the cellType
     func informationDidChange(value: String, type: CellType) {
         switch type {
         case .header:
